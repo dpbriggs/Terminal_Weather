@@ -1,0 +1,2 @@
+cd $DIRNAME
+python3 main.py
