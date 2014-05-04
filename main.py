@@ -143,5 +143,5 @@ class Terminal_Weather(object):
         config = configparser.ConfigParser()
         config.read(file)
         return config
-    
+#Useless line to fix git mess
 Terminal_Weather()
