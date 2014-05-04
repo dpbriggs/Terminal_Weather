@@ -72,8 +72,9 @@ class Terminal_Weather(object):
         windspeed = float(self.data['day0']['wind']['speed'])
         winddir = self.data['day0']['wind']['direction']
         master_line = cur_high_low + ' | ' + str(windspeed) + ' ' + unit['speed'] + ' ' + str(winddir) + u'°' + ' | ' + self.data['day0']['text']
-        
-        today = time.strftime('%A %B %d')
+
+        todays_num = int(time.strftime(' %d'))
+        today = time.strftime('%A %B ') + str(todays_num) + self.number_script(todays_num)
         
         cur_master = [today, cur_temp, master_line]
         
@@ -104,6 +105,18 @@ class Terminal_Weather(object):
             hold.append((day.strftime('%A'), self.data['day'+str(num)]['high'], self.data['day'+str(num)]['low'], self.data['day'+str(num)]['text']))
         return hold
     
+    def number_script(self, num):
+        if num > 3 and num < 21:
+            return 'th'
+        elif num % 10 == 1:
+            return 'st'
+        elif num % 10 == 2:
+            return 'nd'
+        elif num % 10 == 3:
+            return 'rd'
+        else:
+            return 'th'
+                                             
     def todays_message(self): #Generate small message to summarize weather (mostly based on tempurature and windspeed)
         windchill = int(self.data['day0']['wind']['chill'])
         windspeed = float(self.data['day0']['wind']['speed'])
